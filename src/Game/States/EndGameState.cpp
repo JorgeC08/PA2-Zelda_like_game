@@ -4,6 +4,8 @@ EndGameState::EndGameState() {
     loseScreen.load("images/ui/losescreen.png");
     winScreen.load("images/ui/winscreen.png");
     win = false;
+    music.load("audio/ui/beep.wav");
+    
 }
 
 void EndGameState::tick() {
