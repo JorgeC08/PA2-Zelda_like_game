@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include <random>
 
 Enemy::Enemy(string id, int health, int baseDamage, string entityName, int ox, int oy) : Entity(ox, oy, 64, 64, 400, 164, 192, 192, health, baseDamage, "images/entities/enemy1/fightingframes/enemy1-f1.png", "images/entities/enemy1/downframes/enemy1-ow-down1.png")
 {
@@ -44,16 +45,16 @@ void Enemy::tickOverworld()
         switch (direction)
         {
         case Direction::left:
-            direction = Direction::up;
+            direction = static_cast<Direction>(rand() % 4);
             break;
         case Direction::right:
-            direction = Direction::down;
+            direction = static_cast<Direction>(rand() % 4);
             break;
         case Direction::up:
-            direction = Direction::right;
+            direction = static_cast<Direction>(rand() % 4);
             break;
         case Direction::down:
-            direction = Direction::left;
+            direction = static_cast<Direction>(rand() % 4);
             break;
         }
     }
