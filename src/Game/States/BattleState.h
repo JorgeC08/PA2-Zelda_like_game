@@ -26,6 +26,7 @@ class BattleState : public State {
         int currentPlayerHealth;
         int currentEnemyHealth;
         int resultTimer;
+        int health;
         bool canInteract;
     public:
         BattleState(Player *player, Area *area);
@@ -42,5 +43,6 @@ class BattleState : public State {
         void mousePressed(int x, int y, int button);
         void reset();
         void resetPlayer();
+        void setCurrentPlayerHealth(int health);
 
 };

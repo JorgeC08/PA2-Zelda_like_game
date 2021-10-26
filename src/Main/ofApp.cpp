@@ -125,6 +125,12 @@ void ofApp::keyPressed(int key)
 {
 	if (currentState != nullptr)
 		currentState->keyPressed(key);
+	if(key == 'h'){
+		battleState->setCurrentPlayerHealth(100);
+	}
+	if(key== 'r'){
+		overworldState->getEnemy()->revive();
+	}
 }
 
 //--------------------------------------------------------------

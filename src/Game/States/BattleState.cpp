@@ -290,3 +290,8 @@ void BattleState::resetPlayer()
 {
     currentPlayerHealth = player->getHealth();
 }
+
+
+void BattleState::setCurrentPlayerHealth(int health){
+    currentPlayerHealth = player->getHealth();
+}
