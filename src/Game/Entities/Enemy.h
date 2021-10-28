@@ -2,8 +2,9 @@
 
 #include "Entity.h" 
 #include "Animation.h"
+#include "Health.h"
 
-class Enemy : public Entity {
+class Enemy : public Entity , Health {
     private:
         Direction direction = Direction::down;
         int speed = 8;
@@ -20,6 +21,7 @@ class Enemy : public Entity {
         bool dead = false;
         string entityName;
         ofImage sprite; 
+        
 
     
     public:
@@ -40,4 +42,8 @@ class Enemy : public Entity {
         void reset();
         string getId(){ return id; };
         ofImage getSprite() { return overworldSprite;};
+        int getHealth() { return health; };
+        void setHealth() { this->health = health; };
+        int getDmg() { return baseDamage; };
+        void setDmg() { this->baseDamage = baseDamage; };
 };

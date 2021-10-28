@@ -12,6 +12,9 @@ Enemy::Enemy(string id, int health, int baseDamage, string entityName, int ox, i
     vector<ofImage> rightFrames = {};
     vector<ofImage> fightingFrames = {};
     ofImage temp;
+    this->health = health;
+    this->baseDamage = baseDamage;
+    
 
     for (int i = 1; i < 5; i++)
     {
@@ -147,3 +150,4 @@ Enemy::~Enemy()
     delete walkRight;
     delete fighting;
 }
+

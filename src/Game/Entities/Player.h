@@ -2,6 +2,7 @@
 
 #include "Entity.h" 
 #include "Animation.h"
+#include "Health.h"
 
 #define INIT_X 100
 #define INIT_Y 100
@@ -12,7 +13,7 @@
 #define OYDIMENSION 2560
 
 
-class Player : public Entity {
+class Player : public Entity , Health {
     private:
         Direction direction = Direction::up;
         int speed = 8;
@@ -33,4 +34,8 @@ class Player : public Entity {
         void keyPressed(int key);
         void keyReleased(int key);
         void reset();
+        int getHealth() { return health; };
+        void setHealth() { this->health = health; };
+        int getDmg() { return baseDamage; };
+        void setDmg() { this->baseDamage = baseDamage; };
 };

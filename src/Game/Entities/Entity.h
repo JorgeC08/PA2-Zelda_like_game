@@ -3,8 +3,8 @@
 enum Direction {left, right, up, down};
 class Entity {
     protected:
-        int health;
-        int baseDamage;
+        // int health;
+        // int baseDamage;
         // Fighting coordinates and dimensions
         int fx, fy, fw, fh;
         // Overworld Coordinates and dimensions
@@ -27,8 +27,8 @@ class Entity {
         bool collides(Entity* entity);
         void setOX(int ox) { this-> ox = ox; };
         void setOY(int oy) { this-> oy = oy; };
-        int getHealth() { return health; };
-        void setHealth(int health) { this->health = health; };
-        int getDmg() { return baseDamage; };
-        void setDmg(int baseDamage) { this->baseDamage = baseDamage; };
+        // int getHealth() { return health; };
+        // void setHealth(int health) { this->health = health; };
+        // int getDmg() { return baseDamage; };
+        // void setDmg(int baseDamage) { this->baseDamage = baseDamage; };
 };

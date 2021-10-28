@@ -9,6 +9,8 @@ Player::Player(int health, int baseDamage) : Entity(INIT_X, INIT_Y, 64, 64, 64, 
     vector<ofImage> rightFrames = {};
     vector<ofImage> fightingFrames = {};
     ofImage temp;
+    this->health = health;
+    this->baseDamage = baseDamage;
 
     for (int i = 1; i < 5; i++)
     {
@@ -142,3 +144,4 @@ Player::~Player() {
     delete walkLeft;
     delete walkRight;
 }
+
