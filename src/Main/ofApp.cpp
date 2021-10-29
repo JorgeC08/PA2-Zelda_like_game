@@ -40,7 +40,7 @@ void ofApp::setupAreas()
 	enemies2.push_back(area2Enemy4);
 	enemies2.push_back(area2Enemy5);
 	enemies2.push_back(area2Enemy6);
-	area2 = new Area(NULL, "images/areas/area2.png", "audio/ice.wav", "images/stages/stage2.png", entrancePosition2, enemies2, "|Mustafar"); 
+	area2 = new Area(NULL, "images/areas/area2.png", "audio/ice.wav", "images/stages/stage2.png", entrancePosition2, enemies2, "|Hoth"); 
 	vector<Enemy *> enemies1;
 	ofPoint entrancePosition1(4 * 414, 4 * 566);
 	Enemy *area1Enemy1 = new Enemy("11", 20, 4, "enemy1", 4 * 480, 4 * 432);

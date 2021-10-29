@@ -4,13 +4,13 @@
 
 PauseState::PauseState(){
 
-    pauseImage.load("images/ui/loading.png");
+    pauseImage.load("images/ui/pauseImage.jpeg");
 
 }
 
 void PauseState::render(){
 
-    if(pause) pauseImage.draw(50,50,50,50);
+    if(pause) pauseImage.draw(50,50,75,50);
 
 }
 
