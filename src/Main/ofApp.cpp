@@ -14,6 +14,8 @@ void ofApp::setup()
 	winState = new WinState();
 	endGameState = new EndGameState();
 
+	pauseState = new PauseState();
+
 	// Initial State
 	currentState = titleState;
 }
@@ -56,7 +58,8 @@ void ofApp::update()
 {
 	if (currentState != nullptr)
 	{
-		currentState->tick();
+		if(!pauseState->getPause()) currentState->tick();
+
 		if (currentState->hasFinished())
 		{
 			currentState->toggleMusic();
@@ -117,7 +120,10 @@ void ofApp::draw()
 	if (currentState != nullptr)
 	{
 		currentState->render();
+
+		pauseState->render();
 	}
+
 }
 
 //--------------------------------------------------------------
@@ -131,6 +137,9 @@ void ofApp::keyPressed(int key)
 	if(key== 'r'){
 		overworldState->getEnemy()->revive();
 	}
+
+	if(currentState == overworldState || currentState == battleState) pauseState->keyPressed(key);
+
 }
 
 //--------------------------------------------------------------
