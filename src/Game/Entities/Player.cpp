@@ -12,6 +12,8 @@ Player::Player(int health, int baseDamage) : Entity(INIT_X, INIT_Y, 64, 64, 64, 
     this->health = health;
     this->baseDamage = baseDamage;
 
+    currentHealth = health;
+
     for (int i = 1; i < 5; i++)
     {
         temp.load("images/entities/player/downframes/player-ow-front" + std::to_string(i == 3 ? 1 : i) + ".png");
@@ -117,6 +119,7 @@ void Player::keyPressed(int key)
             pressedKeys.push_back(key);
         }
     }
+    if(key == 'h') currentHealth = health;
 }
 
 void Player::keyReleased(int key)

@@ -31,6 +31,8 @@ void BattleState::startBattle(Enemy *enemy)
 
 void BattleState::tick()
 {
+    currentPlayerHealth = player->getCurrentHealth();
+
     if (canInteract)
     {
         if (currentPlayerHealth <= 0)
@@ -71,6 +73,9 @@ void BattleState::tick()
             currentEnemyHealth -= player->getDmg();
             outcome = Outcome::draw;
         }
+        
+        player->setCurrentHealth(currentPlayerHealth);
+
         resultTimer = 30;
         canInteract = false;
     }
@@ -270,6 +275,7 @@ void BattleState::keyPressed(int key)
             }
         }
     }
+    if(key == 'h') player->setCurrentHealth(player->getHealth());
 }
 
 void BattleState::keyReleased(int key)

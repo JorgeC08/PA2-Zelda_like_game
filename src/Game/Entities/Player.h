@@ -38,4 +38,8 @@ class Player : public Entity , Health {
         void setHealth() { this->health = health; };
         int getDmg() { return baseDamage; };
         void setDmg() { this->baseDamage = baseDamage; };
+
+        void setCurrentHealth(int h){currentHealth = h;}
+
+        int getCurrentHealth(){return currentHealth;}
 };

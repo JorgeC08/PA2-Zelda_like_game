@@ -39,6 +39,41 @@ void OverworldState::tick()
     camera->tick();
 }
 
+void OverworldState::drawHUD(){
+    
+    ofImage healthbar;
+    healthbar.load("images/ui/healthbar.png");
+    healthbar.draw(ofGetWidth()/2 - 96,ofGetHeight() - 130, 192, 192);
+
+
+    for (int i = 0; i < 3; i++)
+    {
+        double playerHealthRatio = (double)player->getCurrentHealth() / (double)player->getHealth();
+        
+        if(playerHealthRatio < 0){
+            playerHealthRatio = 0;
+        }
+        else if (playerHealthRatio < 0.33)
+        {
+            ofSetColor(200 - i * 20, 60 - i * 20, 60 - i * 20);
+        }
+        else if (playerHealthRatio < 0.66)
+        {
+            ofSetColor(180 - i * 20, 200 - i * 20, 60 - i * 20);
+        }
+        else
+        {
+            ofSetColor(60 - i * 20, 180 - i * 20, 80 - i * 20);
+        }
+        ofDrawRectangle(ofGetWidth()/2 - 52, ofGetHeight() - 42 + i * 4, (int)(36 * playerHealthRatio) * 4, 4);
+
+    }
+    ofSetColor(255,255,255);
+
+    ofDrawBitmapString(ofToString(area->getRemainingEnemies()) + " enemies remaining", ofGetWidth()/2 -80, ofGetHeight() -70);
+    ofDrawBitmapString(area->getName(), ofGetWidth()/2 +75, ofGetHeight() -70);
+}
+
 void OverworldState::render()
 {
     overworldImage.drawSubsection(0, 0, camera->getDimensionX(), camera->getDimensionY(), camera->getLeftCornerX(), camera->getTopCornerY());
@@ -55,11 +90,15 @@ void OverworldState::render()
             area->getEnemies().at(i)->renderOverworld();
         }
     }
+    drawHUD();
 }
 
 void OverworldState::keyPressed(int key)
 {
     player->keyPressed(key);
+
+    if(key == 'r') area->resetEnemies();
+    
 }
 
 void OverworldState::keyReleased(int key)
