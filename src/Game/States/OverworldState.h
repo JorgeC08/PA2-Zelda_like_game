@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "OverworldCamera.h"
+#include "StaticEntity.h"
 
 class OverworldState : public State
 {

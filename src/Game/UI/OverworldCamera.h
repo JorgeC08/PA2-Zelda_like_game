@@ -2,10 +2,10 @@
 
 #include "EntityManager.h"
 
-#define DIMENSIONX 640
-#define DIMENSIONY 480
-#define OXDIMENSION 2688
-#define OYDIMENSION 2560
+#define DIMENSIONX 640  // camera dimensions
+#define DIMENSIONY 480  // camera dimensions
+#define OXDIMENSION 2688  // world dimensions
+#define OYDIMENSION 2560  // world dimensions
 
 class OverworldCamera {
     private:

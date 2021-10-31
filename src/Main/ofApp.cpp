@@ -26,12 +26,12 @@ void ofApp::setupAreas()
 	//each area is 672 pixels wide and 640 pixels high, with 10 and 8 pixels of space between the player and the edge of the map respectively
 	//each in-game pixel is 4 * 1 screen pixel
 	vector<StaticEntity*> palos;
-	StaticEntity *palo1 = new StaticEntity(12,10,120,120,"images/entities/palos/palo1.png");
-	StaticEntity *palo2 = new StaticEntity(10,12,120,120,"images/entities/palos/palo1.png");
-	StaticEntity *palo3 = new StaticEntity(12,12,120,120,"images/entities/palos/palo1.png");
-	StaticEntity *palo4 = new StaticEntity(10,10,120,120,"images/entities/palos/palo1.png");
-	StaticEntity *palo5 = new StaticEntity(12,12,120,120,"images/entities/palos/palo1.png");
-	StaticEntity *palo6 = new StaticEntity(13,14,120,120,"images/entities/palos/palo1.png");
+	StaticEntity *palo1 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
+	StaticEntity *palo2 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
+	StaticEntity *palo3 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
+	StaticEntity *palo4 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
+	StaticEntity *palo5 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
+	StaticEntity *palo6 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
 	palos.push_back(palo1);
 	palos.push_back(palo2);
 	palos.push_back(palo3);
@@ -63,7 +63,6 @@ void ofApp::setupAreas()
 	enemies1.push_back(area1Enemy3);
 	area1 = new Area(area2, "images/areas/area1.png", "audio/forest.wav", "images/stages/stage1.png", entrancePosition1, enemies1, palos, "|Naboo");
 	currentArea = area1;
-	StaticEntity *palo = new StaticEntity(12,12,120,120,"images/entities/palos/palo1.png");
 }
 
 //--------------------------------------------------------------

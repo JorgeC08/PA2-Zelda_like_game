@@ -6,8 +6,8 @@ OverworldCamera::OverworldCamera(Player *player) {
 
     this->playerW = this->player->getOW();
     this->playerH = this->player->getOH();
-    this->playerX = this->player->getOX() + (this->playerW / 2);
-    this->playerY = this->player->getOY() + (this->playerH / 2);
+    this->playerX = this->player->getOX() + (this->playerW / 2);  // x value for center of player
+    this->playerY = this->player->getOY() + (this->playerH / 2);  // y value for center of player
 
     this->leftCornerX = this->playerX - (DIMENSIONX / 2);
     this->rightCornerX = this->playerX + (DIMENSIONX / 2);

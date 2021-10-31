@@ -39,6 +39,7 @@ class Player : public Entity , Health {
         void setHealth() { this->health = health; };
         int getDmg() { return baseDamage; };
         void setDmg() { this->baseDamage = baseDamage; };
+        bool collitiontree = false;
 
         void setCurrentHealth(int h){currentHealth = h;}
 

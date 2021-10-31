@@ -31,13 +31,3 @@ class Entity {
         // void setDmg(int baseDamage) { this->baseDamage = baseDamage; };
 };
 
-class StaticEntity: public Entity {
-    protected:
-        int renderX = 1000;
-        int renderY = 1000;
-    public:
-        StaticEntity(int ox, int oy, int ow, int oh, string overworldPath);
-        virtual void tickOverworld();
-        void setRenderX(int x){ renderX = x; };
-        void setRenderY(int y){ renderY = y; };
-};

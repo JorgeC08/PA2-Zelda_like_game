@@ -6,7 +6,7 @@
 #include "BattleState.h"
 #include "WinState.h"
 #include "EndGameState.h"
-
+#include "StaticEntity.h"
 #include "PauseState.h"
 
 class ofApp : public ofBaseApp{
