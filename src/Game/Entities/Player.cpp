@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(int health, int baseDamage) : Entity(INIT_X, INIT_Y, 64, 64, 64, 164, 192, 192, health, baseDamage, "images/entities/player/downframes/player-ow-front1.png", "images/entities/player/fightingframes/player-f1.png")
+Player::Player(int health, int baseDamage) : Entity(INIT_X, INIT_Y, 64, 64, "images/entities/player/downframes/player-ow-front1.png")
 {
 
     vector<ofImage> downFrames = {};
@@ -11,6 +11,11 @@ Player::Player(int health, int baseDamage) : Entity(INIT_X, INIT_Y, 64, 64, 64, 
     ofImage temp;
     this->health = health;
     this->baseDamage = baseDamage;
+    this->fx = 64;
+    this->fy = 164;
+    this->fh = 192;
+    this->fw = 192;
+    fightingSprite.load("images/entities/player/fightingframes/player-f1.png");
 
     currentHealth = health;
 
@@ -147,4 +152,6 @@ Player::~Player() {
     delete walkLeft;
     delete walkRight;
 }
-
+void Player::renderFighting() {
+    fightingSprite.draw(fx, fy, fw, fh);
+}

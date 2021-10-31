@@ -25,7 +25,19 @@ void ofApp::setupAreas()
 {
 	//each area is 672 pixels wide and 640 pixels high, with 10 and 8 pixels of space between the player and the edge of the map respectively
 	//each in-game pixel is 4 * 1 screen pixel
-
+	vector<StaticEntity*> palos;
+	StaticEntity *palo1 = new StaticEntity(12,10,120,120,"images/entities/palos/palo1.png");
+	StaticEntity *palo2 = new StaticEntity(10,12,120,120,"images/entities/palos/palo1.png");
+	StaticEntity *palo3 = new StaticEntity(12,12,120,120,"images/entities/palos/palo1.png");
+	StaticEntity *palo4 = new StaticEntity(10,10,120,120,"images/entities/palos/palo1.png");
+	StaticEntity *palo5 = new StaticEntity(12,12,120,120,"images/entities/palos/palo1.png");
+	StaticEntity *palo6 = new StaticEntity(13,14,120,120,"images/entities/palos/palo1.png");
+	palos.push_back(palo1);
+	palos.push_back(palo2);
+	palos.push_back(palo3);
+	palos.push_back(palo4);
+	palos.push_back(palo5);
+	palos.push_back(palo6);
 	vector<Enemy *> enemies2;
 	ofPoint entrancePosition2(4 * 110, 4 * 116);
 	Enemy *area2Enemy1 = new Enemy("21", 30, 6, "enemy2", 4 * 120, 4 * 342);
@@ -40,7 +52,7 @@ void ofApp::setupAreas()
 	enemies2.push_back(area2Enemy4);
 	enemies2.push_back(area2Enemy5);
 	enemies2.push_back(area2Enemy6);
-	area2 = new Area(NULL, "images/areas/area2.png", "audio/ice.wav", "images/stages/stage2.png", entrancePosition2, enemies2, "|Hoth"); 
+	area2 = new Area(NULL, "images/areas/area2.png", "audio/ice.wav", "images/stages/stage2.png", entrancePosition2, enemies2, palos,  "|Hoth"); 
 	vector<Enemy *> enemies1;
 	ofPoint entrancePosition1(4 * 414, 4 * 566);
 	Enemy *area1Enemy1 = new Enemy("11", 20, 4, "enemy1", 4 * 480, 4 * 432);
@@ -49,8 +61,9 @@ void ofApp::setupAreas()
 	enemies1.push_back(area1Enemy1);
 	enemies1.push_back(area1Enemy2);
 	enemies1.push_back(area1Enemy3);
-	area1 = new Area(area2, "images/areas/area1.png", "audio/forest.wav", "images/stages/stage1.png", entrancePosition1, enemies1, "|Naboo");
+	area1 = new Area(area2, "images/areas/area1.png", "audio/forest.wav", "images/stages/stage1.png", entrancePosition1, enemies1, palos, "|Naboo");
 	currentArea = area1;
+	StaticEntity *palo = new StaticEntity(12,12,120,120,"images/entities/palos/palo1.png");
 }
 
 //--------------------------------------------------------------
@@ -73,6 +86,7 @@ void ofApp::update()
 				battleState->setStage(currentArea->getStage());
 				overworldState->loadArea(currentArea);
 				currentState = titleState;
+				
 			}
 			else if (currentState->getNextState() == "Overworld")
 			{

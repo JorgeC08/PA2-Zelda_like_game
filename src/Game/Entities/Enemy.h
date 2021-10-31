@@ -37,6 +37,7 @@ class Enemy : public Entity , Health {
         void tickOverworld();
         void tickFighting();
         void renderOverworld();
+        void renderFighting();
         void keyPressed(int key);
         void keyReleased(int key);
         void reset();

@@ -78,6 +78,13 @@ void OverworldState::render()
 {
     overworldImage.drawSubsection(0, 0, camera->getDimensionX(), camera->getDimensionY(), camera->getLeftCornerX(), camera->getTopCornerY());
     player->renderOverworld();
+    for (unsigned int i = 0; i < area->getPalos().size(); i++){
+        int playerDistanceX = area->getPalos().at(i)->getOX() - camera->getPlayerX();
+        int playerDistanceY = area->getPalos().at(i)->getOY() - camera->getPlayerY();
+        area->getPalos().at(i)->setRenderX(camera->getDimensionX() / 2 + playerDistanceX);
+        area->getPalos().at(i)->setRenderY(camera->getDimensionY() / 2 + playerDistanceY);
+        area->getPalos().at(i)->renderOverworld();
+    }
 
     for (unsigned int i = 0; i < area->getEnemies().size(); i++)
     {

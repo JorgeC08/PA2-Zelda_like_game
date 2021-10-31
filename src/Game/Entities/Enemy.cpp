@@ -1,9 +1,13 @@
 #include "Enemy.h"
 #include <random>
 
-Enemy::Enemy(string id, int health, int baseDamage, string entityName, int ox, int oy) : Entity(ox, oy, 64, 64, 400, 164, 192, 192, health, baseDamage, "images/entities/enemy1/fightingframes/enemy1-f1.png", "images/entities/enemy1/downframes/enemy1-ow-down1.png")
+Enemy::Enemy(string id, int health, int baseDamage, string entityName, int ox, int oy) : Entity(ox, oy, 64, 64, "images/entities/enemy1/downframes/enemy1-ow-down1.png")
 {
     this->id = id;
+    this->fx = 400;
+    this->fy = 164;
+    this->fh = 192;
+    this->fw = 192;
     this->entityName = entityName;
     moveTimer = 60;
     vector<ofImage> downFrames = {};
@@ -14,6 +18,7 @@ Enemy::Enemy(string id, int health, int baseDamage, string entityName, int ox, i
     ofImage temp;
     this->health = health;
     this->baseDamage = baseDamage;
+    fightingSprite.load("images/entities/enemy1/fightingframes/enemy1-f1.png");
     
 
     for (int i = 1; i < 5; i++)
@@ -150,4 +155,6 @@ Enemy::~Enemy()
     delete walkRight;
     delete fighting;
 }
-
+void Enemy::renderFighting() {
+    fightingSprite.draw(fx, fy, fw, fh);
+}
