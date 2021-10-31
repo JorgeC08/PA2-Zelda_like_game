@@ -40,6 +40,7 @@ class Player : public Entity , Health {
         int getDmg() { return baseDamage; };
         void setDmg() { this->baseDamage = baseDamage; };
         bool collitiontree = false;
+        vector<char> getPressedKeys() { return pressedKeys;};
 
         void setCurrentHealth(int h){currentHealth = h;}
 

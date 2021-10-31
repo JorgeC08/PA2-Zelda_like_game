@@ -26,18 +26,18 @@ void ofApp::setupAreas()
 	//each area is 672 pixels wide and 640 pixels high, with 10 and 8 pixels of space between the player and the edge of the map respectively
 	//each in-game pixel is 4 * 1 screen pixel
 	vector<StaticEntity*> palos;
-	StaticEntity *palo1 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
-	StaticEntity *palo2 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
-	StaticEntity *palo3 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
-	StaticEntity *palo4 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
-	StaticEntity *palo5 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
-	StaticEntity *palo6 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
+	StaticEntity *palo1 = new StaticEntity(1000, 2000, 120,120,"images/entities/palos/palo1.png");
+	// StaticEntity *palo2 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
+	// StaticEntity *palo3 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
+	// StaticEntity *palo4 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
+	// StaticEntity *palo5 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
+	// StaticEntity *palo6 = new StaticEntity(120,120,"images/entities/palos/palo1.png");
 	palos.push_back(palo1);
-	palos.push_back(palo2);
-	palos.push_back(palo3);
-	palos.push_back(palo4);
-	palos.push_back(palo5);
-	palos.push_back(palo6);
+	// palos.push_back(palo2);
+	// palos.push_back(palo3);
+	// palos.push_back(palo4);
+	// palos.push_back(palo5);
+	// palos.push_back(palo6);
 	vector<Enemy *> enemies2;
 	ofPoint entrancePosition2(4 * 110, 4 * 116);
 	Enemy *area2Enemy1 = new Enemy("21", 30, 6, "enemy2", 4 * 120, 4 * 342);

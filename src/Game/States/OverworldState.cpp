@@ -24,11 +24,41 @@ void OverworldState::tick()
 {
     for (unsigned int i = 0; i < area->getPalos().size(); i++)
     {
-
         if (player->collides(area->getPalos().at(i)))
         {
-            player->collitiontree = true;
-        }
+            if(!player->getPressedKeys().empty()){
+                int ox = player->getOX();
+                int oy = player->getOY();
+                int ow = player->getOW();
+                int oh = player->getOH();
+                // ofLog(OF_LOG_WARNING, to_string(ox) + " " + to_string(oy) + " " +  to_string(ow) + " " +  to_string(oh));
+                switch (player->getPressedKeys().at(0))
+                {
+                case 'a':
+                        ox -= area->getPalos().at(i)->getOW();
+                        break;
+                case 'd':
+                        ox += area->getPalos().at(i)->getOW();
+                    break;
+                case 'w':
+                        oy -= area->getPalos().at(i)->getOH();
+                    break;
+                case 's':
+                        oy += area->getPalos().at(i)->getOH();
+                    break;
+                }
+
+                // ofLog(OF_LOG_WARNING, to_string(ox) + " " + to_string(oy) + " " +  to_string(ow) + " " +  to_string(oh));
+                // ofLog(OF_LOG_WARNING,to_string(area->getPalos().at(i)->getOX()));
+                // ofLog(OF_LOG_WARNING,to_string(area->getPalos().at(i)->getOY()));
+                // ofLog(OF_LOG_WARNING,to_string(area->getPalos().at(i)->getOW()));
+                // ofLog(OF_LOG_WARNING,to_string(area->getPalos().at(i)->getOH()));
+                if(area->getPalos().at(i)->getBounds().intersects( ofRectangle(ox, oy, ow, oh) )){
+                    keyReleased(player->getPressedKeys().at(0));
+                }
+            }
+
+        } 
     }
     player->tickOverworld();
     for (unsigned int i = 0; i < area->getEnemies().size(); i++)

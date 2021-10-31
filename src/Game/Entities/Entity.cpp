@@ -42,7 +42,5 @@ void StaticEntity::tickOverworld(){
 
 }
 
-StaticEntity::StaticEntity(int ow, int oh, string overworldPath) : Entity(ox, oy, ow, oh, overworldPath){
-    this->ox = ofRandom(LIMITX);
-    this->oy = ofRandom(LIMITY);
+StaticEntity::StaticEntity(int ox, int oy, int ow, int oh, string overworldPath) : Entity(ox, oy, ow, oh, overworldPath){
 }
