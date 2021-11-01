@@ -7,6 +7,9 @@ OverworldState::OverworldState(Player *player, Area *area)
     loadArea(area);
     music.setVolume(0.25);
     music.setLoop(true);
+
+    greetings.load("audio/hello.mp3");
+    greetings.setVolume(0.5);
 }
 
 void OverworldState::loadArea(Area *area)
@@ -74,7 +77,7 @@ void OverworldState::tick()
         area->getFriends().at(i)->tickOverworld();
         if(player->collides(area->getFriends().at(i))){
                 if(interact){
-                    greetings.load("audio/hello.mp3");
+                    greetings.play();
                     interact = false;
                 }
         }
