@@ -69,14 +69,10 @@ void ofApp::setupAreas()
 	enemies2.push_back(area2Enemy4);
 	enemies2.push_back(area2Enemy5);
 	enemies2.push_back(area2Enemy6);
-<<<<<<< HEAD
 	vector<Friend*> friends;
 	Friend *area1friend = new Friend("05", "friend", 4 * 150, 4 * 300);
 	friends.push_back(area1friend);
-	area2 = new Area(NULL, "images/areas/area2.png", "audio/ice.wav", "images/stages/stage2.png", entrancePosition2, enemies2, palos, friends,  "|Hoth"); 
-=======
-	area2 = new Area(NULL, "images/areas/area2.png", "audio/ice.wav", "images/stages/stage2.png", entrancePosition2, enemies2, palos2,  "|Hoth", boss2); 
->>>>>>> b058a5554b2f1c0f09ebb3bbcf5bd380c9f4aa26
+	area2 = new Area(NULL, "images/areas/area2.png", "audio/ice.wav", "images/stages/stage2.png", entrancePosition2, enemies2, friends, palos2, "|Hoth", boss2);
 	vector<Enemy *> enemies1;
 	ofPoint entrancePosition1(4 * 414, 4 * 566);
 	Enemy *area1Enemy1 = new Enemy("11", 20, 4, "enemy1", 4 * 480, 4 * 432);
@@ -85,11 +81,7 @@ void ofApp::setupAreas()
 	enemies1.push_back(area1Enemy1);
 	enemies1.push_back(area1Enemy2);
 	enemies1.push_back(area1Enemy3);
-<<<<<<< HEAD
-	area1 = new Area(area2, "images/areas/area1.png", "audio/forest.wav", "images/stages/stage1.png", entrancePosition1, enemies1, palos, friends, "|Naboo");
-=======
-	area1 = new Area(area2, "images/areas/area1.png", "audio/forest.wav", "images/stages/stage1.png", entrancePosition1, enemies1, palos, "|Naboo", boss1);
->>>>>>> b058a5554b2f1c0f09ebb3bbcf5bd380c9f4aa26
+	area1 = new Area(area2, "images/areas/area1.png", "audio/forest.wav", "images/stages/stage1.png", entrancePosition1, enemies1, friends, palos, "|Naboo", boss1);
 	currentArea = area1;
 
 }
