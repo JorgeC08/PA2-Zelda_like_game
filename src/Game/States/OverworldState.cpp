@@ -31,7 +31,6 @@ void OverworldState::tick()
                 int oy = player->getOY();
                 int ow = player->getOW();
                 int oh = player->getOH();
-                // ofLog(OF_LOG_WARNING, to_string(ox) + " " + to_string(oy) + " " +  to_string(ow) + " " +  to_string(oh));
                 switch (player->getPressedKeys().at(0))
                 {
                 case 'a':
@@ -47,12 +46,6 @@ void OverworldState::tick()
                         oy += area->getPalos().at(i)->getOH();
                     break;
                 }
-
-                // ofLog(OF_LOG_WARNING, to_string(ox) + " " + to_string(oy) + " " +  to_string(ow) + " " +  to_string(oh));
-                // ofLog(OF_LOG_WARNING,to_string(area->getPalos().at(i)->getOX()));
-                // ofLog(OF_LOG_WARNING,to_string(area->getPalos().at(i)->getOY()));
-                // ofLog(OF_LOG_WARNING,to_string(area->getPalos().at(i)->getOW()));
-                // ofLog(OF_LOG_WARNING,to_string(area->getPalos().at(i)->getOH()));
                 if(area->getPalos().at(i)->getBounds().intersects( ofRectangle(ox, oy, ow, oh) )){
                     keyReleased(player->getPressedKeys().at(0));
                 }
@@ -74,6 +67,16 @@ void OverworldState::tick()
             }
         }
     }
+
+    if(area->getRemainingEnemies()==0){
+        area->getBoss()->setActive(true);
+        if(area->getBoss()->collides(player)){
+            setNextState("BossBattle");
+            setFinished(true);
+        }
+    }
+
+    
     camera->tick();
 }
 
@@ -125,6 +128,14 @@ void OverworldState::render()
     
     }
 
+    if(area->getRemainingEnemies()==0){
+        int playerDistanceX = area->getBoss()->getOX() - camera->getPlayerX();
+        int playerDistanceY = area->getBoss()->getOY() - camera->getPlayerY();
+        area->getBoss()->setRenderX(camera->getDimensionX() / 2 + playerDistanceX);
+        area->getBoss()->setRenderY(camera->getDimensionY() / 2 + playerDistanceY);
+        area->getBoss()->renderOverworld();
+    } 
+    else{
 
     for (unsigned int i = 0; i < area->getEnemies().size(); i++)
     {
@@ -137,6 +148,8 @@ void OverworldState::render()
             area->getEnemies().at(i)->renderOverworld();
         }
     }
+    }
+
     drawHUD();
 }
 

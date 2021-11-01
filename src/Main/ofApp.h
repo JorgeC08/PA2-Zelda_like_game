@@ -8,6 +8,7 @@
 #include "EndGameState.h"
 #include "StaticEntity.h"
 #include "PauseState.h"
+#include "BossBattleState.h"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -38,6 +39,7 @@ class ofApp : public ofBaseApp{
 		WinState *winState;
 		EndGameState *endGameState;
 		Player *player;
+		BossBattleState *bossBattleState;
 
 		PauseState *pauseState;
 };

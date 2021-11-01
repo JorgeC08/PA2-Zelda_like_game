@@ -36,13 +36,13 @@ class Player : public Entity , Health {
         void keyReleased(int key);
         void reset();
         int getHealth() { return health; };
-        void setHealth() { this->health = health; };
+        void setHealth(int health) { this->health = health; };
         int getDmg() { return baseDamage; };
-        void setDmg() { this->baseDamage = baseDamage; };
+        void setDmg(int baseDamage) { this->baseDamage = baseDamage; };
         bool collitiontree = false;
         vector<char> getPressedKeys() { return pressedKeys;};
 
-        void setCurrentHealth(int h){currentHealth = h;}
+        void setCurrentHealth(int h){this->currentHealth = h;}
 
         int getCurrentHealth(){return currentHealth;}
 };

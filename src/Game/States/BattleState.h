@@ -7,7 +7,7 @@
 enum Move {rock, paper, scissors, none};
 enum Outcome {win, lose, draw};
 class BattleState : public State {
-    private: 
+    protected: 
         ofImage stage;
         Player *player;
         Enemy *enemy;

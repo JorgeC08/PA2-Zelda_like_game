@@ -44,7 +44,7 @@ class Enemy : public Entity , Health {
         string getId(){ return id; };
         ofImage getSprite() { return overworldSprite;};
         int getHealth() { return health; };
-        void setHealth() { this->health = health; };
+        void setHealth(int health) {this->health = health;};
         int getDmg() { return baseDamage; };
-        void setDmg() { this->baseDamage = baseDamage; };
+        void setDmg(int baseDamage){this->baseDamage =baseDamage ;};
 };
