@@ -29,12 +29,12 @@ void ofApp::setupAreas()
 	Boss *boss1 = new Boss("33", 30, 6, "enemy2", 4 * 120, 4 * 342, 2);
 	Boss *boss2 = new Boss("44", 30, 6, "enemy1", 4 * 120, 4 * 342, 2);
 	vector<StaticEntity*> palos;
-	StaticEntity *palo1 = new StaticEntity(1000, 2000, 200, 300,"images/entities/palos/palo1.png");
-	StaticEntity *palo2 = new StaticEntity(2000,1000, 200, 300,"images/entities/palos/palo4.png");
-	StaticEntity *palo3 = new StaticEntity(2500,2000, 200, 300,"images/entities/palos/palo3.png");
-	StaticEntity *palo4 = new StaticEntity(1000,1000, 200, 300,"images/entities/palos/palo2.png");
-	StaticEntity *palo5 = new StaticEntity(2000,2000, 200, 300,"images/entities/palos/palo5.1.png");
-	StaticEntity *palo6 = new StaticEntity(800,1450, 200, 300,"images/entities/palos/palo3.png");
+	StaticEntity *palo1 = new StaticEntity(1000, 2000, 150, 200,"images/entities/palos/palo1.png");
+	StaticEntity *palo2 = new StaticEntity(2000,1000, 150, 200,"images/entities/palos/palo6.png");
+	StaticEntity *palo3 = new StaticEntity(2500,2000, 150, 200,"images/entities/palos/palo7.png");
+	StaticEntity *palo4 = new StaticEntity(1000,1000, 150, 200,"images/entities/palos/palo8.png");
+	StaticEntity *palo5 = new StaticEntity(2000,2000, 150, 200,"images/entities/palos/palo7.png");
+	StaticEntity *palo6 = new StaticEntity(800,1450, 150, 200,"images/entities/palos/palo7.png");
 	palos.push_back(palo1);
 	palos.push_back(palo2);
 	palos.push_back(palo3);
