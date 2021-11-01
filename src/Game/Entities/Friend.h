@@ -4,6 +4,11 @@
 #include "Animation.h"
 #include "Health.h"
 
+#define CENTER_X 288
+#define CENTER_Y 208
+
+#define OXDIMENSION 2688
+#define OYDIMENSION 2560
 class Friend : public Entity {
     private:
         Direction direction = Direction::down;

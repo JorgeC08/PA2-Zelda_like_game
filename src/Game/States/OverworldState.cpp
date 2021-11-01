@@ -53,8 +53,40 @@ void OverworldState::tick()
                     keyReleased(player->getPressedKeys().at(0));
                 }
             }
-
         } 
+    }
+    for (unsigned int i = 0; i < area->getFriends().size(); i++)
+    {
+        
+        if (player->collides(area->getFriends().at(i)))
+        {
+            
+            if(!player->getPressedKeys().empty())
+            {
+                int ox = player->getOX();
+                int oy = player->getOY();
+                int ow = player->getOW();
+                int oh = player->getOH();
+                switch (player->getPressedKeys().at(0))
+                {
+                case 'a':
+                        ox -= area->getFriends().at(i)->getOW();
+                        break;
+                case 'd':
+                        ox += area->getFriends().at(i)->getOW();
+                    break;
+                case 'w':
+                        oy -= area->getFriends().at(i)->getOH();
+                    break;
+                case 's':
+                        oy += area->getFriends().at(i)->getOH();
+                    break;
+                }
+                if(area->getFriends().at(i)->getBounds().intersects( ofRectangle(ox, oy, ow, oh) )){
+                    keyReleased(player->getPressedKeys().at(0));
+                }
+            }
+        }
     }
     player->tickOverworld();
 
@@ -71,7 +103,7 @@ void OverworldState::tick()
                 setFinished(true);
             }
         }
-      
+    
     }       
     for(unsigned int i = 0; i < area->getFriends().size(); i++){
         area->getFriends().at(i)->tickOverworld();
@@ -171,10 +203,10 @@ void OverworldState::render()
             }
         }
             for(unsigned int i = 0; i < area->getFriends().size(); i++){
-            int playerDistanceX = area->getFriends().at(i)->getOX() - camera->getPlayerX();
-            int playerDistanceY = area->getFriends().at(i)->getOY() - camera->getPlayerY();
-            area->getFriends().at(i)->setRenderX(camera->getDimensionX() / 2 + playerDistanceX);
-            area->getFriends().at(i)->setRenderY(camera->getDimensionY() / 2 + playerDistanceY);
+            int playerDistanceX = area->getFriends().at(i)->getOX() - camera->getLeftCornerX();
+            int playerDistanceY = area->getFriends().at(i)->getOY() - camera->getTopCornerY();
+            area->getFriends().at(i)->setRenderX( playerDistanceX);
+            area->getFriends().at(i)->setRenderY( playerDistanceY);
             area->getFriends().at(i)->renderOverworld();
         }
         drawHUD();

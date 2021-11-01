@@ -64,22 +64,26 @@ void Friend::tickOverworld()
         switch (direction)
         {
         case Direction::left:
-            this->ox -= speed;
+            if (this->ox - speed >= CENTER_X)
+                this->ox -= speed;
             walkLeft->tick();
             overworldSprite = walkLeft->getCurrentFrame();
             break;
         case Direction::right:
-            this->ox += speed;
+            if (this->ox + speed <= OXDIMENSION - CENTER_X)
+                this->ox += speed;
             walkRight->tick();
             overworldSprite = walkRight->getCurrentFrame();
             break;
         case Direction::up:
-            this->oy -= speed;
+            if (this->oy - speed >= CENTER_Y)
+                this->oy -= speed;
             walkUp->tick();
             overworldSprite = walkUp->getCurrentFrame();
             break;
         case Direction::down:
-            this->oy += speed;
+            if (this->oy + speed <= OYDIMENSION - CENTER_Y)
+                this->oy += speed;
             walkDown->tick();
             overworldSprite = walkDown->getCurrentFrame();
             break;
