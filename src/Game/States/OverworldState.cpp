@@ -24,13 +24,38 @@ void OverworldState::tick()
 {
     for (unsigned int i = 0; i < area->getPalos().size(); i++)
     {
-
         if (player->collides(area->getPalos().at(i)))
         {
-            player->collitiontree = true;
-        }
+            if(!player->getPressedKeys().empty()){
+                int ox = player->getOX();
+                int oy = player->getOY();
+                int ow = player->getOW();
+                int oh = player->getOH();
+                switch (player->getPressedKeys().at(0))
+                {
+                case 'a':
+                        ox -= area->getPalos().at(i)->getOW();
+                        break;
+                case 'd':
+                        ox += area->getPalos().at(i)->getOW();
+                    break;
+                case 'w':
+                        oy -= area->getPalos().at(i)->getOH();
+                    break;
+                case 's':
+                        oy += area->getPalos().at(i)->getOH();
+                    break;
+                }
+                if(area->getPalos().at(i)->getBounds().intersects( ofRectangle(ox, oy, ow, oh) )){
+                    keyReleased(player->getPressedKeys().at(0));
+                }
+            }
+
+        } 
     }
     player->tickOverworld();
+
+    //Collision with enemies
     for (unsigned int i = 0; i < area->getEnemies().size(); i++)
     {
         if (!area->getEnemies().at(i)->isDead())
@@ -43,6 +68,7 @@ void OverworldState::tick()
                 setFinished(true);
             }
         }
+<<<<<<< HEAD
       
     }       
     for(unsigned int i = 0; i < area->getFriends().size(); i++){
@@ -54,6 +80,20 @@ void OverworldState::tick()
                 }
         }
     }  
+=======
+    }
+    //Collision with Boss
+    if(area->getRemainingEnemies()==0){
+        area->getBoss()->setActive(true);
+        area->getBoss()->tickOverworld();
+        if(area->getBoss()->collides(player)){
+            setNextState("BossBattle");
+            setFinished(true);
+        }
+    }
+
+    
+>>>>>>> b058a5554b2f1c0f09ebb3bbcf5bd380c9f4aa26
     camera->tick();
 }
 
@@ -88,7 +128,12 @@ void OverworldState::drawHUD(){
     }
     ofSetColor(255,255,255);
 
-    ofDrawBitmapString(ofToString(area->getRemainingEnemies()) + " enemies remaining", ofGetWidth()/2 -80, ofGetHeight() -70);
+    if(area->getBoss()->getisActive() && area->getRemainingEnemies()<=0){
+        ofDrawBitmapString("Boss remaining... ", ofGetWidth()/2 -80, ofGetHeight() -70);
+    }
+    else{
+        ofDrawBitmapString(ofToString(area->getRemainingEnemies()) + " enemies remaining", ofGetWidth()/2 -80, ofGetHeight() -70);
+    }
     ofDrawBitmapString(area->getName(), ofGetWidth()/2 +75, ofGetHeight() -70);
 }
 
@@ -105,18 +150,27 @@ void OverworldState::render()
     
     }
 
+    if(area->getRemainingEnemies()==0){
+        int playerDistanceX = area->getBoss()->getOX() - camera->getLeftCornerX();
+        int playerDistanceY = area->getBoss()->getOY() - camera->getTopCornerY();
+        area->getBoss()->setRenderX(playerDistanceX);
+        area->getBoss()->setRenderY(playerDistanceY);
+        area->getBoss()->renderOverworld();
+    } 
+    else{
 
     for (unsigned int i = 0; i < area->getEnemies().size(); i++)
     {
         if (!area->getEnemies().at(i)->isDead())
         {
-            int playerDistanceX = area->getEnemies().at(i)->getOX() - camera->getPlayerX();
-            int playerDistanceY = area->getEnemies().at(i)->getOY() - camera->getPlayerY();
-            area->getEnemies().at(i)->setRenderX(camera->getDimensionX() / 2 + playerDistanceX);
-            area->getEnemies().at(i)->setRenderY(camera->getDimensionY() / 2 + playerDistanceY);
+            int playerDistanceX = area->getEnemies().at(i)->getOX() - camera->getLeftCornerX();
+            int playerDistanceY = area->getEnemies().at(i)->getOY() - camera->getTopCornerY();
+            area->getEnemies().at(i)->setRenderX( playerDistanceX);
+            area->getEnemies().at(i)->setRenderY(playerDistanceY);
             area->getEnemies().at(i)->renderOverworld();
         }
     }
+<<<<<<< HEAD
         for(unsigned int i = 0; i < area->getFriends().size(); i++){
         int playerDistanceX = area->getFriends().at(i)->getOX() - camera->getPlayerX();
         int playerDistanceY = area->getFriends().at(i)->getOY() - camera->getPlayerY();
@@ -124,6 +178,10 @@ void OverworldState::render()
         area->getFriends().at(i)->setRenderY(camera->getDimensionY() / 2 + playerDistanceY);
         area->getFriends().at(i)->renderOverworld();
     }
+=======
+    }
+
+>>>>>>> b058a5554b2f1c0f09ebb3bbcf5bd380c9f4aa26
     drawHUD();
 }
 

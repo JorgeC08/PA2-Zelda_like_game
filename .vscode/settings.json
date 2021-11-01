@@ -18,6 +18,8 @@
     "files.associations": {
         "vector": "cpp",
         "string": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "*.frag": "cpp",
+        "*.vert": "cpp"
     },
 }

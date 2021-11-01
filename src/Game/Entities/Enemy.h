@@ -4,6 +4,12 @@
 #include "Animation.h"
 #include "Health.h"
 
+#define CENTER_X 288
+#define CENTER_Y 208
+
+#define OXDIMENSION 2688
+#define OYDIMENSION 2560
+
 class Enemy : public Entity , Health {
     private:
         Direction direction = Direction::down;
@@ -44,7 +50,7 @@ class Enemy : public Entity , Health {
         string getId(){ return id; };
         ofImage getSprite() { return overworldSprite;};
         int getHealth() { return health; };
-        void setHealth() { this->health = health; };
+        void setHealth(int health) {this->health = health;};
         int getDmg() { return baseDamage; };
-        void setDmg() { this->baseDamage = baseDamage; };
+        void setDmg(int baseDamage){this->baseDamage =baseDamage ;};
 };

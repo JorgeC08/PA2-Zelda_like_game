@@ -1,6 +1,10 @@
 #include "Area.h"
 
+<<<<<<< HEAD
 Area::Area(Area *nextArea, string areaImagePath, string areaMusicPath, string areaStagePath, ofPoint entrancePosition, vector<Enemy*> enemies, vector<StaticEntity*> palos, vector<Friend*> friends, string name)
+=======
+Area::Area(Area *nextArea, string areaImagePath, string areaMusicPath, string areaStagePath, ofPoint entrancePosition, vector<Enemy*> enemies, vector<StaticEntity*> palos, string name, Boss *boss)
+>>>>>>> b058a5554b2f1c0f09ebb3bbcf5bd380c9f4aa26
 {
     this->nextArea = nextArea;
     areaImage.load(areaImagePath);
@@ -9,8 +13,12 @@ Area::Area(Area *nextArea, string areaImagePath, string areaMusicPath, string ar
     this->entrancePosition = entrancePosition;
     this->enemies = enemies;
     this->palos = palos;
+<<<<<<< HEAD
 
     this->friends = friends;
+=======
+    this->boss = boss;
+>>>>>>> b058a5554b2f1c0f09ebb3bbcf5bd380c9f4aa26
     this->name = name;
 }
 

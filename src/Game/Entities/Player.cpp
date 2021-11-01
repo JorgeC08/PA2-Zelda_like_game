@@ -46,6 +46,7 @@ Player::Player(int health, int baseDamage) : Entity(INIT_X, INIT_Y, 64, 64, "ima
 
 void Player::tickOverworld()
 {
+
     if (!pressedKeys.empty())
     {
         switch (pressedKeys[0])
@@ -61,7 +62,6 @@ void Player::tickOverworld()
             direction = Direction::right;
             if (this->ox + speed <= OXDIMENSION - CENTER_X)
                 this->ox += speed;
-
             walkRight->tick();
             overworldSprite = walkRight->getCurrentFrame();
             break;
@@ -71,7 +71,6 @@ void Player::tickOverworld()
                 this->oy -= speed;
             walkUp->tick();
             overworldSprite = walkUp->getCurrentFrame();
-
             break;
         case 's':
             direction = Direction::down;
