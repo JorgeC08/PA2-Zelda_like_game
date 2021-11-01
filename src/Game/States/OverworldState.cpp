@@ -54,6 +54,8 @@ void OverworldState::tick()
         } 
     }
     player->tickOverworld();
+
+    //Collision with enemies
     for (unsigned int i = 0; i < area->getEnemies().size(); i++)
     {
         if (!area->getEnemies().at(i)->isDead())
@@ -67,9 +69,10 @@ void OverworldState::tick()
             }
         }
     }
-
+    //Collision with Boss
     if(area->getRemainingEnemies()==0){
         area->getBoss()->setActive(true);
+        area->getBoss()->tickOverworld();
         if(area->getBoss()->collides(player)){
             setNextState("BossBattle");
             setFinished(true);
@@ -111,7 +114,12 @@ void OverworldState::drawHUD(){
     }
     ofSetColor(255,255,255);
 
-    ofDrawBitmapString(ofToString(area->getRemainingEnemies()) + " enemies remaining", ofGetWidth()/2 -80, ofGetHeight() -70);
+    if(area->getBoss()->getisActive() && area->getRemainingEnemies()<=0){
+        ofDrawBitmapString("Boss remaining... ", ofGetWidth()/2 -80, ofGetHeight() -70);
+    }
+    else{
+        ofDrawBitmapString(ofToString(area->getRemainingEnemies()) + " enemies remaining", ofGetWidth()/2 -80, ofGetHeight() -70);
+    }
     ofDrawBitmapString(area->getName(), ofGetWidth()/2 +75, ofGetHeight() -70);
 }
 
@@ -129,10 +137,10 @@ void OverworldState::render()
     }
 
     if(area->getRemainingEnemies()==0){
-        int playerDistanceX = area->getBoss()->getOX() - camera->getPlayerX();
-        int playerDistanceY = area->getBoss()->getOY() - camera->getPlayerY();
-        area->getBoss()->setRenderX(camera->getDimensionX() / 2 + playerDistanceX);
-        area->getBoss()->setRenderY(camera->getDimensionY() / 2 + playerDistanceY);
+        int playerDistanceX = area->getBoss()->getOX() - camera->getLeftCornerX();
+        int playerDistanceY = area->getBoss()->getOY() - camera->getTopCornerY();
+        area->getBoss()->setRenderX(playerDistanceX);
+        area->getBoss()->setRenderY(playerDistanceY);
         area->getBoss()->renderOverworld();
     } 
     else{
@@ -141,10 +149,10 @@ void OverworldState::render()
     {
         if (!area->getEnemies().at(i)->isDead())
         {
-            int playerDistanceX = area->getEnemies().at(i)->getOX() - camera->getPlayerX();
-            int playerDistanceY = area->getEnemies().at(i)->getOY() - camera->getPlayerY();
-            area->getEnemies().at(i)->setRenderX(camera->getDimensionX() / 2 + playerDistanceX);
-            area->getEnemies().at(i)->setRenderY(camera->getDimensionY() / 2 + playerDistanceY);
+            int playerDistanceX = area->getEnemies().at(i)->getOX() - camera->getLeftCornerX();
+            int playerDistanceY = area->getEnemies().at(i)->getOY() - camera->getTopCornerY();
+            area->getEnemies().at(i)->setRenderX( playerDistanceX);
+            area->getEnemies().at(i)->setRenderY(playerDistanceY);
             area->getEnemies().at(i)->renderOverworld();
         }
     }

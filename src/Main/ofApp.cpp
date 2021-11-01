@@ -43,12 +43,12 @@ void ofApp::setupAreas()
 	palos.push_back(palo6);
 
 	vector<StaticEntity*> palos2;
-	StaticEntity *palo1area2 = new StaticEntity(1000, 2000, 200, 300,"images/entities/palos/palo1.png");
-	StaticEntity *palo2area2 = new StaticEntity(2000,1000, 200, 300,"images/entities/palos/palo4.png");
-	StaticEntity *palo3area2 = new StaticEntity(2500,2000, 200, 300,"images/entities/palos/palo3.png");
-	StaticEntity *palo4area2 = new StaticEntity(1000,1000, 200, 300,"images/entities/palos/palo2.png");
-	StaticEntity *palo5area2 = new StaticEntity(2000,2000, 200, 300,"images/entities/palos/palo5.1.png");
-	StaticEntity *palo6area2 = new StaticEntity(800,1450, 200, 300,"images/entities/palos/palo3.png");
+	StaticEntity *palo1area2 = new StaticEntity(1000, 2000, 150, 200,"images/entities/palos/piedra.png");
+	StaticEntity *palo2area2 = new StaticEntity(2000,1000, 150, 200,"images/entities/palos/piedra1.png");
+	StaticEntity *palo3area2 = new StaticEntity(2500,2000, 150, 200,"images/entities/palos/nieve.png");
+	StaticEntity *palo4area2 = new StaticEntity(1000,1000, 150, 200,"images/entities/palos/nieve1.png");
+	StaticEntity *palo5area2 = new StaticEntity(2000,2000, 150, 200,"images/entities/palos/piedra.png");
+	StaticEntity *palo6area2 = new StaticEntity(800,1450, 150, 200,"images/entities/palos/nieve.png");
 	palos2.push_back(palo1area2);
 	palos2.push_back(palo2area2);
 	palos2.push_back(palo3area2);

@@ -62,7 +62,6 @@ void Player::tickOverworld()
             direction = Direction::right;
             if (this->ox + speed <= OXDIMENSION - CENTER_X)
                 this->ox += speed;
-
             walkRight->tick();
             overworldSprite = walkRight->getCurrentFrame();
             break;
@@ -72,7 +71,6 @@ void Player::tickOverworld()
                 this->oy -= speed;
             walkUp->tick();
             overworldSprite = walkUp->getCurrentFrame();
-
             break;
         case 's':
             direction = Direction::down;
