@@ -4,6 +4,7 @@
 #include "Area.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Friend.h"
 #include "OverworldCamera.h"
 #include "StaticEntity.h"
 
@@ -16,6 +17,7 @@ class OverworldState : public State
         Area *area;
         std::vector<Enemy*> enemies;
         Enemy *enemy;
+        ofSoundPlayer greetings;
         
     public:
         OverworldState(Player *player, Area *area);
@@ -32,4 +34,7 @@ class OverworldState : public State
         void reset();
 
         void drawHUD();
+        bool interact = false;
+
+        
 };

@@ -48,7 +48,10 @@ void OverworldState::tick()
     for(unsigned int i = 0; i < area->getFriends().size(); i++){
         area->getFriends().at(i)->tickOverworld();
         if(player->collides(area->getFriends().at(i))){
-                music.load("hello.wav");
+                if(interact){
+                    greetings.load("audio/hello.mp3");
+                    interact = false;
+                }
         }
     }  
     camera->tick();
@@ -130,6 +133,7 @@ void OverworldState::keyPressed(int key)
 
     if(key == 'r') area->resetEnemies();
     
+    if(key == 'e') interact = !interact;
 }
 
 void OverworldState::keyReleased(int key)

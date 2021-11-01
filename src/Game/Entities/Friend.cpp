@@ -33,7 +33,7 @@ Friend::Friend(string id, string entityName, int ox, int oy) : Entity(ox, oy, 64
 
 void Friend::tickOverworld()
 {
-    if (moveTimer == 15)
+    if (moveTimer == 60)
     {
         walking = true;
         switch (direction)
@@ -52,12 +52,12 @@ void Friend::tickOverworld()
             break;
         }
     }
-    if (moveTimer == 15)
+    if (moveTimer == 45)
     {
         walking = false;
     }
     moveTimer--;
-    if (moveTimer == 0) moveTimer = 30;
+    if (moveTimer == 0) moveTimer = 60;
 
     if (walking)
     {
@@ -108,7 +108,7 @@ void Friend::tickOverworld()
 void Friend::renderOverworld()
 {
     // uncomment these if you want the coordinates of the enemies in the current area
-    // ofDrawscBitmapString("rX:" + to_string(renderX), 100 + 125 * ((stoi(id) % 10) - 1), 100);
+    // ofDrawBitmapString("rX:" + to_string(renderX), 100 + 125 * ((stoi(id) % 10) - 1), 100);
     // ofDrawBitmapString("rY:" + to_string(renderY), 100 + 125 * ((stoi(id) % 10) - 1), 120);
     // ofDrawBitmapString("ow:" + to_string(ox), 100 + 125 * ((stoi(id) % 10) - 1), 140);
     // ofDrawBitmapString("oy:" + to_string(oy), 100 + 125 * ((stoi(id) % 10) - 1), 160);
