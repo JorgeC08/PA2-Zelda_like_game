@@ -1,5 +1,6 @@
 #pragma once
 #include "ofMain.h"
+#include "Health.h"
 enum Direction {left, right, up, down};
 class Entity {
     protected:

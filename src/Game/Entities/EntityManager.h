@@ -2,6 +2,7 @@
 
 #include "Entity.h"
 #include "Player.h"
+#include "Friend.h"
 
 class EntityManager {
     public:

@@ -43,7 +43,14 @@ void OverworldState::tick()
                 setFinished(true);
             }
         }
-    }
+      
+    }       
+    for(unsigned int i = 0; i < area->getFriends().size(); i++){
+        area->getFriends().at(i)->tickOverworld();
+        if(player->collides(area->getFriends().at(i))){
+                music.load("hello.wav");
+        }
+    }  
     camera->tick();
 }
 
@@ -106,6 +113,13 @@ void OverworldState::render()
             area->getEnemies().at(i)->setRenderY(camera->getDimensionY() / 2 + playerDistanceY);
             area->getEnemies().at(i)->renderOverworld();
         }
+    }
+        for(unsigned int i = 0; i < area->getFriends().size(); i++){
+        int playerDistanceX = area->getFriends().at(i)->getOX() - camera->getPlayerX();
+        int playerDistanceY = area->getFriends().at(i)->getOY() - camera->getPlayerY();
+        area->getFriends().at(i)->setRenderX(camera->getDimensionX() / 2 + playerDistanceX);
+        area->getFriends().at(i)->setRenderY(camera->getDimensionY() / 2 + playerDistanceY);
+        area->getFriends().at(i)->renderOverworld();
     }
     drawHUD();
 }

@@ -8,6 +8,7 @@
 #include "EndGameState.h"
 #include "StaticEntity.h"
 #include "PauseState.h"
+#include "Loading.h"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -15,7 +16,6 @@ class ofApp : public ofBaseApp{
 		void setupAreas();
 		void update();
 		void draw();
-		
 		void keyPressed(int key);
 		void keyReleased(int key);
 		void mouseMoved(int x, int y);

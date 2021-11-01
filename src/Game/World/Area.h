@@ -2,6 +2,7 @@
 
 #include "Player.h"
 #include "Enemy.h"
+#include "Friend.h"
 #include "OverworldCamera.h"
 #include "StaticEntity.h"
 
@@ -16,10 +17,11 @@ class Area
         Area *nextArea;
         std::vector<StaticEntity*> palos;
         
+        std::vector<Friend*> friends;
         string name;
 
     public:
-        Area(Area *nextArea, string areaImagePath, string areaMusicPath, string areaStagePath, ofPoint entrancePosition, vector<Enemy*> enemies, vector<StaticEntity*> palos, string name);
+        Area(Area *nextArea, string areaImagePath, string areaMusicPath, string areaStagePath, ofPoint entrancePosition, vector<Enemy*> enemies, vector<StaticEntity*> palos, vector<Friend*> friends, string name);
         void resetEnemies();
         ofImage getImage() { return areaImage;};
         ofSoundPlayer getMusic() { return areaMusic;};
@@ -31,6 +33,8 @@ class Area
         vector<StaticEntity*> getPalos() { return palos;};
         int getRemainingEnemies();
         Area* getNextArea() { return nextArea;};
+        void setFriends(std::vector<Friend*> friends){this->friends = friends;};
+        vector<Friend*> getFriends(){return friends;};
         string getName() {return name;}
         
 };
