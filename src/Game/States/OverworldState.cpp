@@ -9,7 +9,7 @@ OverworldState::OverworldState(Player *player, Area *area)
     music.setLoop(true);
 
     greetings.load("audio/hello.mp3");
-    greetings.setVolume(0.5);
+    greetings.setVolume(1.0);
 }
 
 void OverworldState::loadArea(Area *area)
