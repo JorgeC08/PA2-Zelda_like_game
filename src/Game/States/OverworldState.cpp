@@ -209,8 +209,9 @@ void OverworldState::render()
             area->getFriends().at(i)->setRenderY( playerDistanceY);
             area->getFriends().at(i)->renderOverworld();
         }
-        drawHUD();
+        
     }
+    drawHUD();
 }
 void OverworldState::keyPressed(int key)
 {
