@@ -3,6 +3,7 @@
 WinState::WinState() {
     screen.load("images/ui/winscreen.png");
     music.load("audio/ui/beep.wav");
+    this->statename = "Win";
     
 }
 

@@ -21,6 +21,7 @@ BattleState::BattleState(Player *player, Area *area)
     result1.load("images/ui/buttons/rock1.png");
     result2.load("images/ui/buttons/paper1.png");
     result3.load("images/ui/buttons/scissors1.png");
+    this->statename = "Battle";
 }
 
 void BattleState::startBattle(Enemy *enemy)

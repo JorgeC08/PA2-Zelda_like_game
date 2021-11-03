@@ -2,6 +2,7 @@
 #include "BattleState.h"
 
 BossBattleState::BossBattleState(Player *player, Area *area) : BattleState(player, area){
+    this->statename = "BossBattle";
 }
 void BossBattleState::startBattle(Boss *boss)
 {

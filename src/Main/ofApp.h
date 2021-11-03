@@ -9,7 +9,7 @@
 #include "StaticEntity.h"
 #include "PauseState.h"
 #include "BossBattleState.h"
-
+#include "LoadingState.h"
 class ofApp : public ofBaseApp{
 	public:
 		void setup();
@@ -41,4 +41,5 @@ class ofApp : public ofBaseApp{
 		BossBattleState *bossBattleState;
 
 		PauseState *pauseState;
+		LoadingState *loadingState;
 };
