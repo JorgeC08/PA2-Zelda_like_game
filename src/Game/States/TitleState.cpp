@@ -13,6 +13,7 @@ TitleState::TitleState() {
     music.setLoop(true);
     music.setVolume(0.25);
     music.play();
+    this->statename = "Title";
 }
 
 void TitleState::tick() {

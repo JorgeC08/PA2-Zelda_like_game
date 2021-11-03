@@ -3,6 +3,8 @@
 PauseState::PauseState(){
 
     pauseImage.load("images/ui/pauseImage.jpeg");
+    this->statename = "Pause";
+
 
 }
 

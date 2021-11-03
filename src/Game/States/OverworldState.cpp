@@ -10,6 +10,7 @@ OverworldState::OverworldState(Player *player, Area *area)
 
     greetings.load("audio/hello.mp3");
     greetings.setVolume(1.0);
+    this->statename = "Overworld";
 }
 
 void OverworldState::loadArea(Area *area)
@@ -209,8 +210,9 @@ void OverworldState::render()
             area->getFriends().at(i)->setRenderY( playerDistanceY);
             area->getFriends().at(i)->renderOverworld();
         }
-        drawHUD();
+        
     }
+    drawHUD();
 }
 void OverworldState::keyPressed(int key)
 {

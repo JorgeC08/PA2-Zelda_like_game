@@ -39,10 +39,12 @@ class State {
 		void setNextState(string nextState){
 			this->nextState = nextState;
 		}
+		string getStateName(){return this->statename;};
 
 	protected:
 		string nextState;
 		ofSoundPlayer music;
 		bool finished = false;
+		string statename;
 
 };

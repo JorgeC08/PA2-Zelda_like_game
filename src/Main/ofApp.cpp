@@ -4,7 +4,7 @@
 void ofApp::setup()
 {
 	ofSetFrameRate(30);
-	ofSetWindowTitle("PA2");
+	ofSetWindowTitle("Finding Pollitos");
 	setupAreas();
 	// Declaration and Initialization of States
 	player = new Player(100, 6);
@@ -29,13 +29,13 @@ void ofApp::setupAreas()
 	//each in-game pixel is 4 * 1 screen pixel
 	Boss *boss1 = new Boss("33", 30, 6, "enemy2", 4 * 120, 4 * 342, 2);
 	Boss *boss2 = new Boss("44", 30, 6, "enemy1", 4 * 120, 4 * 342, 2);
-	vector<StaticEntity*> palos;
-	StaticEntity *palo1 = new StaticEntity(1000, 2000, 150, 200,"images/entities/palos/palo1.png");
-	StaticEntity *palo2 = new StaticEntity(2000,1000, 150, 200,"images/entities/palos/palo6.png");
-	StaticEntity *palo3 = new StaticEntity(2500,2000, 150, 200,"images/entities/palos/palo7.png");
-	StaticEntity *palo4 = new StaticEntity(1000,1000, 150, 200,"images/entities/palos/palo8.png");
-	StaticEntity *palo5 = new StaticEntity(2000,2000, 150, 200,"images/entities/palos/palo7.png");
-	StaticEntity *palo6 = new StaticEntity(800,1450, 150, 200,"images/entities/palos/palo7.png");
+	vector<StaticEntity *> palos;
+	StaticEntity *palo1 = new StaticEntity(1000, 2000, 150, 200, "images/entities/palos/palo1.png");
+	StaticEntity *palo2 = new StaticEntity(2000, 1000, 150, 200, "images/entities/palos/palo6.png");
+	StaticEntity *palo3 = new StaticEntity(2500, 2000, 150, 200, "images/entities/palos/palo7.png");
+	StaticEntity *palo4 = new StaticEntity(1000, 1000, 150, 200, "images/entities/palos/palo8.png");
+	StaticEntity *palo5 = new StaticEntity(2000, 2000, 150, 200, "images/entities/palos/palo7.png");
+	StaticEntity *palo6 = new StaticEntity(800, 1450, 150, 200, "images/entities/palos/palo7.png");
 	palos.push_back(palo1);
 	palos.push_back(palo2);
 	palos.push_back(palo3);
@@ -43,13 +43,13 @@ void ofApp::setupAreas()
 	palos.push_back(palo5);
 	palos.push_back(palo6);
 
-	vector<StaticEntity*> palos2;
-	StaticEntity *palo1area2 = new StaticEntity(1000, 2000, 150, 200,"images/entities/palos/piedra.png");
-	StaticEntity *palo2area2 = new StaticEntity(2000,1000, 150, 200,"images/entities/palos/piedra1.png");
-	StaticEntity *palo3area2 = new StaticEntity(2500,2000, 150, 200,"images/entities/palos/nieve.png");
-	StaticEntity *palo4area2 = new StaticEntity(1000,1000, 150, 200,"images/entities/palos/nieve1.png");
-	StaticEntity *palo5area2 = new StaticEntity(2000,2000, 150, 200,"images/entities/palos/piedra.png");
-	StaticEntity *palo6area2 = new StaticEntity(800,1450, 150, 200,"images/entities/palos/nieve.png");
+	vector<StaticEntity *> palos2;
+	StaticEntity *palo1area2 = new StaticEntity(1000, 2000, 150, 200, "images/entities/palos/piedra.png");
+	StaticEntity *palo2area2 = new StaticEntity(2000, 1000, 150, 200, "images/entities/palos/piedra1.png");
+	StaticEntity *palo3area2 = new StaticEntity(2500, 2000, 150, 200, "images/entities/palos/nieve.png");
+	StaticEntity *palo4area2 = new StaticEntity(1000, 1000, 150, 200, "images/entities/palos/nieve1.png");
+	StaticEntity *palo5area2 = new StaticEntity(2000, 2000, 150, 200, "images/entities/palos/piedra.png");
+	StaticEntity *palo6area2 = new StaticEntity(800, 1450, 150, 200, "images/entities/palos/nieve.png");
 	palos2.push_back(palo1area2);
 	palos2.push_back(palo2area2);
 	palos2.push_back(palo3area2);
@@ -70,7 +70,7 @@ void ofApp::setupAreas()
 	enemies2.push_back(area2Enemy4);
 	enemies2.push_back(area2Enemy5);
 	enemies2.push_back(area2Enemy6);
-	vector<Friend*> friends;
+	vector<Friend *> friends;
 	Friend *area1friend = new Friend("05", "friend", 4 * 150, 4 * 300);
 	friends.push_back(area1friend);
 	area2 = new Area(NULL, "images/areas/area2.png", "audio/ice.wav", "images/stages/stage2.png", entrancePosition2, enemies2, friends, palos2, "|Hoth", boss2);
@@ -84,7 +84,6 @@ void ofApp::setupAreas()
 	enemies1.push_back(area1Enemy3);
 	area1 = new Area(area2, "images/areas/area1.png", "audio/forest.wav", "images/stages/stage1.png", entrancePosition1, enemies1, friends, palos, "|Naboo", boss1);
 	currentArea = area1;
-
 }
 
 //--------------------------------------------------------------
@@ -92,73 +91,76 @@ void ofApp::update()
 {
 	if (currentState != nullptr)
 	{
-		if(!pauseState->getPause()) currentState->tick();
+		if (!pauseState->getPause() || currentState->getStateName() == "Loading")
+			currentState->tick();
 
 		if (currentState->hasFinished())
 		{
-			currentState->toggleMusic();
-			if (currentState->getNextState() == "Title")
+			if (currentState->getStateName() != "Loading" && currentState->getStateName() != "Battle" && currentState->getStateName() != "BossBattle")
 			{
-				endGameState->setWin(false);
-				area1->resetEnemies();
-				area2->resetEnemies();
-				currentArea = area1;
-				battleState->resetPlayer();
-				battleState->setStage(currentArea->getStage());
-				overworldState->loadArea(currentArea);
-				currentState = titleState;
-				
+				loadingState->reset();
+				loadingState->setNextState(currentState->getNextState());
+				currentState = loadingState;
+				ofLogWarning("loading activated" );
 			}
-			else if (currentState->getNextState() == "Overworld")
+			else
 			{
-				currentState = overworldState;
-			}
-			else if (currentState->getNextState() == "BossBattle")
-			{
-				bossBattleState->startBattle(currentArea->getBoss());
-				currentState = bossBattleState;
-			}
-			else if (currentState->getNextState() == "Battle")
-			{
-				battleState->startBattle(overworldState->getEnemy());
-				currentState = battleState;
-			}
-			else if (currentState->getNextState() == "Win")
-			{
-				overworldState->getEnemy()->kill();
-				if (currentArea->getRemainingEnemies() == 0 && currentArea->getBoss()->getisDefeated() && !currentArea->getBoss()->getisActive()) // boss is defeated and deactivated
+				ofLogWarning("running" + currentState->getStateName() + " nextw " + currentState->getNextState());
+				currentState->toggleMusic();
+				if (currentState->getNextState() == "Title")
 				{
-					if (currentArea->getNextArea() == NULL)
+					endGameState->setWin(false);
+					area1->resetEnemies();
+					area2->resetEnemies();
+					currentArea = area1;
+					battleState->resetPlayer();
+					battleState->setStage(currentArea->getStage());
+					overworldState->loadArea(currentArea);
+					currentState = titleState;
+				}
+				else if (currentState->getNextState() == "Overworld")
+				{
+					currentState = overworldState;
+				}
+				else if (currentState->getNextState() == "BossBattle")
+				{
+					bossBattleState->startBattle(currentArea->getBoss());
+					currentState = bossBattleState;
+				}
+				else if (currentState->getNextState() == "Battle")
+				{
+					battleState->startBattle(overworldState->getEnemy());
+					currentState = battleState;
+				}
+				else if (currentState->getNextState() == "Win")
+				{
+					overworldState->getEnemy()->kill();
+					if (currentArea->getRemainingEnemies() == 0 && currentArea->getBoss()->getisDefeated() && !currentArea->getBoss()->getisActive()) // boss is defeated and deactivated
 					{
-						endGameState->setWin(true);
-						currentState = endGameState;
+						if (currentArea->getNextArea() == NULL)
+						{
+							endGameState->setWin(true);
+							currentState = endGameState;
+						}
+						else
+						{
+							currentArea = currentArea->getNextArea();
+							overworldState->loadArea(currentArea);
+							battleState->setStage(currentArea->getStage());
+							currentState = winState;
+						}
 					}
 					else
 					{
-						currentArea = currentArea->getNextArea();
-						overworldState->loadArea(currentArea);
-						battleState->setStage(currentArea->getStage());
 						currentState = winState;
 					}
 				}
-				else
-				{
-					currentState = winState;
-				}
+				else if (currentState->getNextState() == "End")
+					currentState = endGameState;
+
+				currentState->toggleMusic();
+				currentState->reset();
 			}
-			else if (currentState->getNextState() == "End")
-				currentState = endGameState;
-
-				
-			else if (currentState->getNextState() == "loadingState"){
-				//Guardar el pevious state
-				currentState = loadingState;
-				//Verificar que estado tenia antes y setNextState() al currentState basado en el que estaba antes
-
-			}
-
-			currentState->toggleMusic();
-			currentState->reset();
 		}
 	}
 }
@@ -172,16 +174,17 @@ void ofApp::draw()
 
 		pauseState->render();
 	}
-
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
 {
-	if (currentState != nullptr){
+	if (currentState != nullptr)
+	{
 		currentState->keyPressed(key);
 
-	if(currentState == overworldState || currentState == battleState) pauseState->keyPressed(key);
+		if (currentState == overworldState || currentState == battleState)
+			pauseState->keyPressed(key);
 	}
 }
 
