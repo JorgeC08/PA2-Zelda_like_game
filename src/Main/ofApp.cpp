@@ -101,11 +101,9 @@ void ofApp::update()
 				loadingState->reset();
 				loadingState->setNextState(currentState->getNextState());
 				currentState = loadingState;
-				ofLogWarning("loading activated" );
 			}
 			else
 			{
-				ofLogWarning("running" + currentState->getStateName() + " nextw " + currentState->getNextState());
 				currentState->toggleMusic();
 				if (currentState->getNextState() == "Title")
 				{
