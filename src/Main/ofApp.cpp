@@ -96,6 +96,7 @@ void ofApp::update()
 
 		if (currentState->hasFinished())
 		{
+			currentState->toggleMusic();
 			if (currentState->getStateName() != "Loading" && currentState->getStateName() != "Battle" && currentState->getStateName() != "BossBattle")
 			{
 				loadingState->reset();
@@ -104,7 +105,6 @@ void ofApp::update()
 			}
 			else
 			{
-				currentState->toggleMusic();
 				if (currentState->getNextState() == "Title")
 				{
 					endGameState->setWin(false);
@@ -153,8 +153,9 @@ void ofApp::update()
 						currentState = winState;
 					}
 				}
-				else if (currentState->getNextState() == "End")
+				else if (currentState->getNextState() == "End"){
 					currentState = endGameState;
+				}
 
 				currentState->toggleMusic();
 				currentState->reset();
