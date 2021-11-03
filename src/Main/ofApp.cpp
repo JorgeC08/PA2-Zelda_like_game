@@ -16,6 +16,7 @@ void ofApp::setup()
 	endGameState = new EndGameState();
 
 	pauseState = new PauseState();
+	loadingState = new LoadingState();
 
 	// Initial State
 	currentState = titleState;
@@ -147,6 +148,15 @@ void ofApp::update()
 			}
 			else if (currentState->getNextState() == "End")
 				currentState = endGameState;
+
+				
+			else if (currentState->getNextState() == "loadingState"){
+				//Guardar el pevious state
+				currentState = loadingState;
+				//Verificar que estado tenia antes y setNextState() al currentState basado en el que estaba antes
+
+			}
+
 			currentState->toggleMusic();
 			currentState->reset();
 		}
